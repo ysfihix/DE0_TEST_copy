@@ -143,7 +143,7 @@ signal s_enable_io                        : std_logic_vector(31 downto 0);
 signal reset_n                            : std_logic;
 signal s_ff_rd_valid                      : std_logic;
 signal s_ff_rd_data                       : std_logic_vector(31 downto 0);
-signal s_ff_rd_channel                    : std_logic_vector(7 downto 0);   
+signal s_ff_rd_channel                    : std_logic_vector(7 downto 0);
 signal s_ff_rd_error                      : std_logic_vector(7 downto 0);
 signal s_ff_rd_startofpacket              : std_logic;
 signal s_ff_rd_endofpacket                : std_logic;
