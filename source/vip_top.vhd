@@ -25,7 +25,7 @@ entity VIP_TOP is
    generic
    (
       ENABLE_BUSWIDTH               : natural := 1
-   )
+   );
    port
    (
       clk                            : in    std_logic;
@@ -88,7 +88,7 @@ architecture structural of VIP_TOP is
 ----------------------------------------------------------------------------------------------------
 -- SIGNAL
 ----------------------------------------------------------------------------------------------------
-s_enable                                  : std_logic_vector(ENABLE_BUSWIDTH-1 downto 0);
+signal s_enable                                  : std_logic_vector(ENABLE_BUSWIDTH-1 downto 0);
 -- 0
 signal s_srce_0_valid                     : std_logic;
 signal s_srce_0_data                      : std_logic_vector(31 downto 0);
@@ -99,7 +99,7 @@ signal s_sink_0_valid                     : std_logic;
 signal s_sink_0_data                      : std_logic_vector(31 downto 0);
 signal s_sink_0_startofpacket             : std_logic;
 signal s_sink_0_endofpacket               : std_logic;
-signal s_sink_0_ready                     : std_logic
+signal s_sink_0_ready                     : std_logic;
 
 -- -- 1
 -- signal s_srce_1_valid                     : std_logic;
@@ -111,7 +111,7 @@ signal s_sink_0_ready                     : std_logic
 -- signal s_sink_1_data                      : std_logic_vector(31 downto 0);
 -- signal s_sink_1_startofpacket             : std_logic;
 -- signal s_sink_1_endofpacket               : std_logic;
--- signal s_sink_1_ready                     : std_logic
+-- signal s_sink_1_ready                     : std_logic;
 
 
 begin

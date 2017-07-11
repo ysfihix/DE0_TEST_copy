@@ -116,8 +116,15 @@ constant c_ENABLE_BUSWIDTH                : natural := 1; -- Max value = 32
    end component DE0_TEST_Nios;
 
    component VIP_TOP is
+      generic
+   (
+      ENABLE_BUSWIDTH               : natural := 1
+   );
       port
       (
+         clk                              : in    std_logic;
+         reset_n                          : in    std_logic;
+         enable                           : in    std_logic_vector(ENABLE_BUSWIDTH-1 downto 0);
          srce_valid                       : out   std_logic;
          srce_data                        : out   std_logic_vector(31 downto 0);
          srce_channel                     : out   std_logic_vector(7 downto 0);
@@ -138,6 +145,7 @@ constant c_ENABLE_BUSWIDTH                : natural := 1; -- Max value = 32
 ----------------------------------------------------------------------------------------------------
 -- SIGNAL
 ----------------------------------------------------------------------------------------------------
+signal clk                                : std_logic;
 signal s_enable_io                        : std_logic_vector(31 downto 0);
 -- VIP
 signal reset_n                            : std_logic;
@@ -179,7 +187,7 @@ reset_n <= KEY(0);
          sdram_wire_dqm                   => DRAM_DQM,
          sdram_wire_ras_n                 => DRAM_RAS_N,
          sdram_wire_we_n                  => DRAM_WE_N,
-         altpll_sdram_clk                 => DRAM_CLK,
+         altpll_sdram_clk                 => clk,
          altpll_areset_conduit_export     => '0',
          altpll_locked_conduit_export     => open,
          altpll_phasedone_conduit_export  => open,
@@ -205,6 +213,7 @@ reset_n <= KEY(0);
 ----------------------------------------------------------------------------------------------------
 -- VIP Top
 ----------------------------------------------------------------------------------------------------
+        DRAM_CLK                          <= clk;
    VIP_TOP_inst : VIP_TOP
       generic map
       (
@@ -212,7 +221,7 @@ reset_n <= KEY(0);
       )
       port map
       (
-         clk                              => DRAM_CLK,
+         clk                              => clk,
          reset_n                          => reset_n,
          enable                           => s_enable_io(c_ENABLE_BUSWIDTH -1 downto 0),
          srce_valid                       => s_ff_rd_valid         ,
