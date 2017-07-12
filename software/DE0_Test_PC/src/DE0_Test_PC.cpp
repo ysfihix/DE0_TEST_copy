@@ -22,7 +22,7 @@ static char buf[16];
 
 int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
-
+/*
 	JTAGATLANTIC *atlantic = jtagatlantic_open(NULL, -1, -1, "echohello");
 	    if(!atlantic) {
 	        show_err();
@@ -45,7 +45,7 @@ int main() {
 	    jtagatlantic_close(atlantic);
 
 	cout << "!!!Goodbye World!!!" << endl; // prints !!!Goodbye World!!!
-
+*/
 	getchar();
 
 	return 0;
